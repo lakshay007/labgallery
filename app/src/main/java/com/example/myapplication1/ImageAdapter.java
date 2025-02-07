@@ -1,5 +1,6 @@
 package com.example.myapplication1;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .error(android.R.drawable.ic_menu_report_image)
                 .centerCrop()
                 .into(holder.imageView);
+
+        // Set click listener for the image
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), FullScreenImageActivity.class);
+            intent.putExtra(FullScreenImageActivity.EXTRA_IMAGE_PATH, imagePath);
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
